@@ -24,8 +24,12 @@ function getById(id) {
   })
 }
 
+function getImage(imageName, size){
+  return `https://image.tmdb.org/t/p/${size}/${imageName}`;
+}
 
 export default {
   getDiscovery,
-  getById
+  getById,
+  getImage,
 };
