@@ -11,7 +11,9 @@ const INITIAL_STATE = {
   asyncLoading: false,
   asyncError: null,
   asyncDataDiscovery: null,
-  asyncDataById: null
+  asyncDataById: null,
+  asyncDataVs1: null,
+  asyncDataVs2: null,
 }
 
 // Reducers
