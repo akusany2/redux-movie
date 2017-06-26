@@ -14,6 +14,7 @@ const jsSourcePath = path.join(__dirname, './source/js');
 const buildPath = path.join(__dirname, './build');
 const imgPath = path.join(__dirname, './source/assets/img');
 const iconPath = path.join(__dirname, './source/assets/icons');
+const fontPath = path.join(__dirname, './source/assets/fonts');
 const sourcePath = path.join(__dirname, './source');
 
 
@@ -76,6 +77,15 @@ const rules = [
       'svgo-loader',
     ],
     include: iconPath,
+  },
+  {
+    test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+    use: [
+      {
+        loader: 'file-loader'
+      }
+    ],
+    include: fontPath
   },
   {
     test: /\.(png|gif|jpg|svg)$/,
