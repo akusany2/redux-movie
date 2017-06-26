@@ -3,6 +3,8 @@ import api from '../api';
 const FETCH_DATA_START = 'FETCH_DATA_START';
 const SUCCESS_BY_ID_DATA = 'SUCCESS_BY_ID_DATA';
 const SUCCESS_DISCOVERY_DATA = 'SUCCESS_DISCOVERY_DATA';
+const SUCCESS_VS1_DATA = 'SUCCESS_VS1_DATA';
+const SUCCESS_VS2_DATA = 'SUCCESS_VS2_DATA';
 const FETCH_DATA_ERROR_ACTION = 'FETCH_DATA_ERROR_ACTION';
 
 const INITIAL_STATE = {
@@ -21,6 +23,10 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, asyncLoading: false, asyncDataDiscovery: action.data }
     case SUCCESS_BY_ID_DATA:
       return { ...state, asyncLoading: false, asyncDataById: action.data }
+    case SUCCESS_VS1_DATA:
+      return { ...state, asyncLoading: false, asyncDataVs1: action.data }
+    case SUCCESS_VS2_DATA:
+      return { ...state, asyncLoading: false, asyncDataVs2: action.data }
     case FETCH_DATA_ERROR_ACTION:
       return { ...state, asyncLoading: false, asyncError: action.err }
     default:
@@ -49,6 +55,19 @@ function fetchDataByIdSuccess(data){
     data
   }
 }
+function fetchDataVs1Success(data){
+  return {
+    type: 'SUCCESS_VS1_DATA',
+    data
+  }
+}
+function fetchDataVs2Success(data){
+  return {
+    type: 'SUCCESS_VS2_DATA',
+    data
+  }
+}
+
 
 function fetchDataError(err){
   return {
@@ -75,6 +94,24 @@ export function getById(id){
     api.getById(id)
       .then( data => {
         return dispatch( fetchDataByIdSuccess(data) );
+      })
+      .catch( err => dispatch(fetchDataError(err)) );
+  }
+}
+
+export function getVs(id1, id2){
+  return function (dispatch) {
+    dispatch( fetchDataStart() );
+    let movies = {};
+    api.getById(id1)
+      .then( data => {
+        return dispatch( fetchDataVs1Success(data) );
+      })
+      .catch( err => dispatch(fetchDataError(err)) );
+
+    api.getById(id2)
+      .then( data => {
+        return dispatch( fetchDataVs2Success(data) );
       })
       .catch( err => dispatch(fetchDataError(err)) );
   }
