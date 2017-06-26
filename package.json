@@ -1,5 +1,5 @@
 {
-  "name": "react-redux-webpack2-boilerplate",
+  "name": "redux-boilerplate",
   "version": "0.1.7",
   "private": false,
   "license": "MIT",
@@ -67,22 +67,6 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0"
   },
-  "description": "Starter boilerplate for React and Redux, using Webpack 2",
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/Stanko/react-redux-webpack2-boilerplate.git"
-  },
-  "keywords": [
-    "react",
-    "redux",
-    "webpack2",
-    "boilerplate"
-  ],
-  "author": "Stanko",
-  "bugs": {
-    "url": "https://github.com/Stanko/react-redux-webpack2-boilerplate/issues"
-  },
-  "homepage": "https://github.com/Stanko/react-redux-webpack2-boilerplate#readme",
   "prepush": [
     "npm run lint-break-on-errors --silent"
   ]
