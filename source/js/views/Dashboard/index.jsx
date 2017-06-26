@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { getDiscovery } from '../../redux/movie';
+import api from '../../api';
 import { routeCodes } from '../App'
 import Icon from 'components/Global/Icon';
-import bookImg from '../../../assets/img/book2.jpg';
+import { Card, CardTitle, Row, Col, Container } from 'react-materialize';
 
 
 @connect(state => ({
@@ -19,7 +20,8 @@ export default class Dashboard extends Component {
     super();
 
     this.handleAsyncButtonClick = this.handleAsyncButtonClick.bind(this);
-    this.handleTestButtonClick = this.handleTestButtonClick.bind(this);
+    this.getBackdrop = this.getBackdrop.bind(this);
+
   }
 
   handleAsyncButtonClick() {
@@ -28,8 +30,12 @@ export default class Dashboard extends Component {
     dispatch(getDiscovery());
   }
 
-  handleTestButtonClick() {
-    const { dispatch } = this.props;
+  componentWillMount(){
+    this.props.dispatch(getDiscovery())
+  }
+
+  getBackdrop(img){
+    return api.getImage(img, 'w780');
   }
 
   render() {
@@ -40,48 +46,33 @@ export default class Dashboard extends Component {
     } = this.props;
 
     return (
-      <div className='Dashboard'>
-          <h1>Marvin</h1>
-          <p>
-              Boilerplate for kicking off React/Redux applications.
-          </p>
+      <div className='home'>
 
-          <hr />
+          <div className='container'>
+              <p>
+                  Random movies
+              </p>
 
-          <h2>Examples</h2>
-
-
-          <h3>Async action example</h3>
-          <div className='Example'>
+              <hr />
               { asyncData && asyncData.results.map( (result) => {
-                  return <p key={result.id}><Link to={routeCodes.MOVIE+'/'+result.id}>{result.title}</Link></p>
+                  return <Card className="large"
+                      key={result.id}
+                      header={<CardTitle image={this.getBackdrop(result.backdrop_path)}>{result.title}</CardTitle>}
+                      actions={[<Link to={routeCodes.MOVIE+'/'+result.id}>{result.title}</Link>]}>
+                      {result.overview}
+                  </Card>
               } ) }
               { asyncLoading && <p>Loading...</p> }
               { asyncError && <p>Error: { asyncError }</p> }
-              <button
+              {/* <button
                   disabled={ asyncLoading }
                   onClick={ this.handleAsyncButtonClick }
-              >
+                  >
                   Get async data
-              </button>
+              </button> */}
           </div>
 
-          <h3>Background image</h3>
-          <div className='Example'>
-              <div className='BackgroundImgExample' />
-          </div>
 
-        <h3>Image imported to the component</h3>
-        <div className='Example'>
-          <img src={ bookImg } alt='' className='ImgExample' />
-        </div>
-
-        <h3>SVG sprite icon set</h3>
-        <div className='Example'>
-          <Icon glyph='square' />
-          <Icon glyph='circle' />
-          <Icon glyph='triangle' />
-        </div>
       </div>
     );
   }

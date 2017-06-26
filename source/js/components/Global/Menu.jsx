@@ -1,41 +1,23 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Navbar, NavItem } from 'react-materialize';
 import { routeCodes } from '../../views/App';
-import workAndCoLogoImg from '../../../assets/img/workco-logo.svg';
 
 export default class Menu extends Component {
   render() {
     return (
       <div className='Menu'>
-          <div className='Menu-logo'>
-              <img
-                  src={ workAndCoLogoImg }
-              />
-          </div>
-          <div className='Menu-links'>
-              <NavLink
-                  activeClassName='Menu-link--active'
-                  className='Menu-link'
-                  exact
-                  to={ routeCodes.DASHBOARD }
-              >
-                  Home
-              </NavLink>
-              <NavLink
-                  activeClassName='Menu-link--active'
-                  className='Menu-link'
-                  to={ routeCodes.ABOUT }
-              >
-                  About
-              </NavLink>
-              <NavLink
-                  activeClassName='Menu-link--active'
-                  className='Menu-link'
-                  to='404'
-              >
-                  404
-              </NavLink>
-          </div>
+          <nav className="blue-grey">
+              <div className="nav-wrapper">
+                  <a href="#" className="brand-logo right">Logo</a>
+                  <ul className="left">
+                      <li><Link to={ routeCodes.DASHBOARD }>Home</Link></li>
+                      <li><Link to={ routeCodes.ABOUT }>About</Link></li>
+                      <li><Link to="404">404</Link></li>
+                  </ul>
+              </div>
+          </nav>
+
       </div>
     );
   }
