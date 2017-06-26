@@ -49,16 +49,11 @@ export default class Dashboard extends Component {
       <div className='home'>
 
           <div className='container'>
-              <p>
-                  Random movies
-              </p>
-
-              <hr />
               { asyncData && asyncData.results.map( (result) => {
                   return <Card className="large"
                       key={result.id}
                       header={<CardTitle image={this.getBackdrop(result.backdrop_path)}>{result.title}</CardTitle>}
-                      actions={[<Link to={routeCodes.MOVIE+'/'+result.id}>{result.title}</Link>]}>
+                      actions={[<Link to={routeCodes.MOVIE+'/'+result.id} >{result.title}</Link>]}>
                       {result.overview}
                   </Card>
               } ) }

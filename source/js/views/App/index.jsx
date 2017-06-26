@@ -7,6 +7,7 @@ import About from 'views/About';
 import Movie from 'views/Movie';
 import NotFound from 'views/NotFound';
 import Menu from 'components/Global/Menu';
+import Footer from 'components/Global/Footer';
 
 const publicPath = '/';
 
@@ -34,6 +35,7 @@ export default class App extends Component {
                       <Route path='*' component={ NotFound } />
                   </Switch>
               </div>
+              <Footer />
           </div>
       </BrowserRouter>
     );

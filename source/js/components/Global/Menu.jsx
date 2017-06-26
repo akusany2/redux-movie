@@ -9,7 +9,7 @@ export default class Menu extends Component {
       <div className='Menu'>
           <nav className="blue-grey">
               <div className="nav-wrapper">
-                  <a href="#" className="brand-logo right">Logo</a>
+                  <a href="#" className="brand-logo right">MovieApp</a>
                   <ul className="left">
                       <li><Link to={ routeCodes.DASHBOARD }>Home</Link></li>
                       <li><Link to={ routeCodes.ABOUT }>About</Link></li>
